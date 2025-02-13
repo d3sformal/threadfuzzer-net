@@ -1,0 +1,58 @@
+# Logging
+#   0 = Disabled
+#   1 = Error
+#   2 = Warn
+#   3 = Info
+#   4 = Verbose
+#   5 = Debug
+# logging = 0
+
+# Logging file
+# logging_file = - # Log to stdout
+# logging_file = -- # Log to stderr
+# logging_file = file # Log to file at given path
+# logging_file =  # Do not log (default)
+
+# Entry point (FQ name of a type containing the main function and optionally the name of entry method); regex
+# entry_point = .*\.Program
+# entry_point = .*\.Program\.Tests Test_SomeSpecificTest
+
+# Debugging type (console, fuzzing, systematic, pursuing)
+# debug_type = console
+
+# Systematic can have extra arguments
+# debug_type  = systematic
+# debug_type += first           # first, last or random
+# debug_type += extra.log       # path to extra logging
+
+# Thawing timeout
+# thawing_timeout = -1 # Disabled
+# thawing_timeout = 0 # thread_yield
+# thawing_timeout = 50 # Default (in microseconds)
+
+# Data file (for systematic/pursuing)
+# data_file = data_file_path
+
+# Stop type
+# stop_type = managed # Wait for the code to return to managed environment (.NET)
+# stop_type = immediate # Immediately stop
+
+# Trace file
+# trace_file = # Trace disabled
+# trace_file = - # Trace to stdout
+# trace_file = -- # Trace to stderr
+# trace_file = file.txt # Trace to file at path 'file.txt'
+
+# Weak stop points (single thread stops upon entering this method)
+# arg1: FQ name of type; regex
+# arg2: method name; regex
+# weak_points = HelloWorld.Program Main
+# weak_points += HelloWorld.Program get_.*
+# weak_points += HelloWorld.Program set_.* when_in HelloWorld.Program Foo when_in HelloWorld.Program Bar
+
+
+# Strong stop points (every thread stops when any thread enters this method)
+# arg1: FQ name of type; regex
+# arg2: method name; regex
+# strong_points  = HelloWorld.Program Sync1
+# strong_points += HelloWorld.Program Sync2

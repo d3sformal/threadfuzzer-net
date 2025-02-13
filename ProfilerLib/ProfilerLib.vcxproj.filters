@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{a31a52b4-34c5-43ad-943e-ab9416061033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{7b583840-5ed2-4047-a969-317ea12d49e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Base\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Thread Interleaving Control">
+      <UniqueIdentifier>{3222cc33-c36f-4da7-ab79-cc1b58ca0528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread Interleaving Control\Drivers">
+      <UniqueIdentifier>{758db81f-e032-4894-a83e-f5b94f67813d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cor_profiler.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cor_profiler_base.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\net_types.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\config_file.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cli_metadata_parser.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sigparse.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cor_profiler_base.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\class_factory.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cor_profiler.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cor_error_handling.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_safe_logger.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\net_types.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cli_metadata_parser.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\argument_data.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config_file.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_id.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stack_info.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_local_storage.hpp">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\binary_fstream.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\tree_graph.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\wstring_split.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\byte_formatter.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\wstring_join.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\spin_lock.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\console.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\heap_allocating_resource.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\process.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\console_driver.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\driver_base.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\fuzzing_driver.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\pursuing_driver.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\systematic_driver.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\atomic_value_exchanger.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\stop_points.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\thread_controller.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\thread_info.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\trace.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main.def" />
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="tree_graph.natvis">
+      <Filter>Utils</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>

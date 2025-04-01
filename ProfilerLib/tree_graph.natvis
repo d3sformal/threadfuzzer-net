@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+    <Type Name="tree_graph&lt;*&gt;::graph_vertex">
+        <DisplayString>{{ value={value}, size={edges.size()} }}</DisplayString>
+        <Expand>
+            <Item Name="[edges]">edges</Item>
+            <Item Name="[children]">children</Item>
+        </Expand>
+    </Type>
+</AutoVisualizer>

@@ -48,27 +48,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountBad.cs" />
-    <Compile Include="BluetoothDriverBadTweaked.cs" />
-    <Compile Include="BluetoothDriverBad.cs" />
-    <Compile Include="Carter01Bad.cs" />
-    <Compile Include="CircularBufferBad.cs" />
-    <Compile Include="Deadlock01Bad.cs" />
-    <Compile Include="Lazy01Bad.cs" />
+    <Compile Include="BenchmarkPrograms\AccountBad.cs" />
+    <Compile Include="BenchmarkPrograms\BluetoothDriverBadTweaked.cs" />
+    <Compile Include="BenchmarkPrograms\BluetoothDriverBad.cs" />
+    <Compile Include="BenchmarkPrograms\Carter01Bad.cs" />
+    <Compile Include="BenchmarkPrograms\CircularBufferBad.cs" />
+    <Compile Include="BenchmarkPrograms\Deadlock01Bad.cs" />
+    <Compile Include="BenchmarkPrograms\Lazy01Bad.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueBad.cs" />
-    <Compile Include="ReorderBadTweaked.cs" />
-    <Compile Include="ReorderBad.cs" />
-    <Compile Include="StackBad.cs" />
-    <Compile Include="StringBufferJDK.cs" />
-    <Compile Include="TokenRingBad.cs" />
-    <Compile Include="TwoStageBadTweaked.cs" />
-    <Compile Include="TwoStageBad.cs" />
+    <Compile Include="BenchmarkPrograms\QueueBad.cs" />
+    <Compile Include="BenchmarkPrograms\ReorderBadTweaked.cs" />
+    <Compile Include="BenchmarkPrograms\ReorderBad.cs" />
+    <Compile Include="BenchmarkPrograms\StackBad.cs" />
+    <Compile Include="BenchmarkPrograms\StringBufferJDK.cs" />
+    <Compile Include="BenchmarkPrograms\TokenRingBad.cs" />
+    <Compile Include="BenchmarkPrograms\TwoStageBadTweaked.cs" />
+    <Compile Include="BenchmarkPrograms\TwoStageBad.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="WrongLockBadTweaked.cs" />
-    <Compile Include="WrongLockBad.cs" />
-    <Compile Include="WSQ.cs" />
+    <Compile Include="BenchmarkPrograms\WrongLockBadTweaked.cs" />
+    <Compile Include="BenchmarkPrograms\WrongLockBad.cs" />
+    <Compile Include="BenchmarkPrograms\WSQ.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

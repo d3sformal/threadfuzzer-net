@@ -2,7 +2,7 @@
 namespace Benchmarks
 {
     [BenchmarkInfo(DegreeOfConcurrency = 4 + 12 + 1, Notes = "fields -> properties; higher timeout")]
-    public class ReorderBad3Tweaked : ReorderBadTweakedBase, IBenchmark
+    public class ReorderBadTweaked3 : ReorderBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {
@@ -11,7 +11,7 @@ namespace Benchmarks
     }
 
     [BenchmarkInfo(DegreeOfConcurrency = 5 + 16 + 1, Notes = "fields -> properties; higher timeout")]
-    public class ReorderBad4Tweaked : ReorderBadTweakedBase, IBenchmark
+    public class ReorderBadTweaked4 : ReorderBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {
@@ -20,7 +20,7 @@ namespace Benchmarks
     }
     
     [BenchmarkInfo(DegreeOfConcurrency = 6 + 20 + 1, Notes = "fields -> properties; higher timeout")]
-    public class ReorderBad5Tweaked : ReorderBadTweakedBase, IBenchmark
+    public class ReorderBadTweaked5 : ReorderBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {
@@ -29,7 +29,7 @@ namespace Benchmarks
     }
     
     [BenchmarkInfo(DegreeOfConcurrency = 11 + 40 + 1, Notes = "fields -> properties; much higher timeout; tailored stop points")]
-    public class ReorderBad10Tweaked : ReorderBadTweakedBase, IBenchmark
+    public class ReorderBadTweaked10 : ReorderBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {
@@ -38,7 +38,7 @@ namespace Benchmarks
     }
 
     [BenchmarkInfo(DegreeOfConcurrency = 21 + 89 + 1, Notes = "fields -> properties; much higher timeout; tailored stop points")]
-    public class ReorderBad20Tweaked : ReorderBadTweakedBase, IBenchmark
+    public class ReorderBadTweaked20 : ReorderBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {

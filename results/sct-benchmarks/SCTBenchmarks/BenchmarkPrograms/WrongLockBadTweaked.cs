@@ -12,7 +12,7 @@ namespace Benchmarks
     }
 
     [BenchmarkInfo(DegreeOfConcurrency = 1 + 3 + 1, Notes = "fields -> properties")]
-    public class WrongLockBad3Tweaked : WrongLockBadTweakedBase, IBenchmark
+    public class WrongLockBadTweaked3 : WrongLockBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {

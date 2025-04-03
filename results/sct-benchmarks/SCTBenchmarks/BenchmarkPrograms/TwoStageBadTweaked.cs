@@ -4,7 +4,7 @@ using System.Threading;
 namespace Benchmarks
 {
     [BenchmarkInfo(DegreeOfConcurrency = 99 + 1 + 1, Notes = "fields -> properties")]
-    public class TwoStageBad100Tweaked: TwoStageBadTweakedBase, IBenchmark
+    public class TwoStageBadTweaked100: TwoStageBadTweakedBase, IBenchmark
     {
         public void RunTest()
         {

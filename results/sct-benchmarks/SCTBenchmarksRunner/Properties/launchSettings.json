@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "SCTBenchmarksRunner": {
-      "commandName": "Project",
-      "commandLineArgs": "-s C:\\Users\\Filip\\_Data\\Programming\\ThreadManagerTest\\results\\sct-benchmarks\\SCTBenchmarks\\bin\\Debug\\Benchmarks.exe"
-    }
-  }
-}

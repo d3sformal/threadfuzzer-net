@@ -1,7 +1,7 @@
 This project contains the prototype implementation of a fuzzing tool for multithreaded C#/.NET programs on Windows systems, and few small benchmarks.
 Developed by Filip Kliber and Pavel Parízek at Department of Distributed and Dependable Systems, Charles University, Prague, Czech Republic.
 
-More information about the tool, including overall architecture, technical details, and fuzzing supported algorithms, is available in the paper "Locating Concurrency Errors in Windows .NET Applications by Fuzzing over Thread Schedules", to be published at SPIN 2025.
+More information about the tool, including overall architecture, technical details, and supported fuzzing algorithms, is available in the paper "Locating Concurrency Errors in Windows .NET Applications by Fuzzing over Thread Schedules", to be published at SPIN 2025.
 
 The tool was tested on [Windows11 Evaluation](https://www.microsoft.com/en-us/evalcenter/download-windows-11-enterprise) using [Visual Studio 2022 Community](https://visualstudio.microsoft.com/vs/community/) (with installed C++ and .NET Framework development support). Currently, only `x86` variant is supported and all projects need to be compiled as such. Please refer to official guide for [Visual Studio solution configuration](https://learn.microsoft.com/en-us/visualstudio/ide/understanding-build-configurations?view=vs-2022).
 

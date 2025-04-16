@@ -1,12 +1,12 @@
 This project contains the prototype implementation of a fuzzing tool for multithreaded C#/.NET programs on Windows systems, and few small benchmarks.
 Developed by Filip Kliber and Pavel Parízek at Department of Distributed and Dependable Systems, Charles University, Prague, Czech Republic.
 
-Paper title: Locating Concurrency Errors in Windows .NET Applications by Fuzzing over Thread Schedules
+More information about the tool, including overall architecture, technical details, and fuzzing supported algorithms, is available in the paper "Locating Concurrency Errors in Windows .NET Applications by Fuzzing over Thread Schedules", to be published at SPIN 2025.
 
-The tool was tested on [Windows11 Evaluation](https://www.microsoft.com/en-us/evalcenter/download-windows-11-enterprise) using [Visual Studio 2022 Community](https://visualstudio.microsoft.com/vs/community/) (with installed C++ and .NET Framework development support). Currently, only `x86` variant is supported and all projects needs to be compiled as such. Please refer to official guide for [visual studio solution configuration](https://learn.microsoft.com/en-us/visualstudio/ide/understanding-build-configurations?view=vs-2022).
+The tool was tested on [Windows11 Evaluation](https://www.microsoft.com/en-us/evalcenter/download-windows-11-enterprise) using [Visual Studio 2022 Community](https://visualstudio.microsoft.com/vs/community/) (with installed C++ and .NET Framework development support). Currently, only `x86` variant is supported and all projects need to be compiled as such. Please refer to official guide for [Visual Studio solution configuration](https://learn.microsoft.com/en-us/visualstudio/ide/understanding-build-configurations?view=vs-2022).
 
 ## Repository layout
-The following diagram illustrates relevant folders and files in this repository
+The following diagram points to relevant folders and files in this repository
 
 ```
 threadfuzzer-net/
@@ -18,21 +18,21 @@ threadfuzzer-net/
 ├─ TraceFileInspector/      (Used to inspect domain specific trace file format)
 ├─ TraceFileStats/          (Used to parse domain specific trace file format and produce stats)
 ├─ results/                 (Framework for running the profiler on benchmarks and collecting results)
-│  ├─ sct-benchmarks/         (SCTBenchmarks; has it's own README.md)
+│  ├─ sct-benchmarks/         (SCTBenchmarks; has its own README.md)
 │  ├─ test-projects/          (Test projects used during development)
 ├─ ThreadFuzzer.NET.sln     (Main solution file for compiling everything)
 ├─ README.md                (This file)
 ```
 
 ## Installation
-Currently, there is no system-wide installation. Provided solution file builds the the library into `./Release/ProfilerLib.dll` (or `./Debug/ProfilerLib.dll`). The step-by-step would be
+Currently, there is no system-wide installation. Provided solution file builds the library into `./Release/ProfilerLib.dll` (or `./Debug/ProfilerLib.dll`). The step-by-step process would be
 
 - Open `ThreadFuzzer.NET.sln`
 - Change configuration to `Release`, `x86` in menu
 - Build -> Build solution
 
 ## Running on sample program
-To allow CLR to attach the profiler to the application, several environmental variables needs to be set. The provided `run_profiler.bat` script does exactly that and can be invoked in the following way:
+To allow CLR to attach the profiler to the application, several environmental variables need to be set. The provided `run_profiler.bat` script does exactly that and can be invoked in the following way:
 
 ```
 ProfilerLib\run_profiler.bat Release\ProfilerLib.dll <path to configuration> <path to application executable>

@@ -15,12 +15,12 @@ Note that this will take hours to run.
 
 `results_profiled.txt` contain individual sections for every benchmark. Each section contains
 
-- Amount of iterations
+- Number of iterations
 - How many iterations Passed/Failed/TimedOut
 - Average TimePerRun
 - Degree of Concurrency and Size of the benchmark (SLOC)
 
-On top of that, `traces` directory contains traces for each benchmark (multiple iterations are collected in single file). These can be further inspected via provided tools (`TraceFileInspector` and `TraceFileStats`).
+On top of that, `traces` directory contains traces for each benchmark (multiple iterations are collected in a single file). These can be further inspected via provided tools (`TraceFileInspector` and `TraceFileStats`).
 
 # Running multiple configurations in batch
 We clear the old traces and results

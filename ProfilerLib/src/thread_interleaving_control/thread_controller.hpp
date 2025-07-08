@@ -50,6 +50,9 @@ class thread_controller
     stop_points weak_points;
     stop_points strong_points;
 
+    std::size_t thread_preemption_bound;
+    std::atomic<std::size_t> current_thread_preemptions;
+
     atomic_value_exchanger<thread_info> thread_info_to_add;
     atomic_value_exchanger<std::reference_wrapper<thread_info>> thread_info_to_remove;
 
@@ -223,11 +226,12 @@ class thread_controller
     }
 
 public:
-    thread_controller(const cor_profiler& profiler, stop_points&& weak_points, stop_points&& strong_points, bool stop_immediate)
+    thread_controller(const cor_profiler& profiler, stop_points&& weak_points, stop_points&& strong_points, std::size_t thread_preemption_bound, bool stop_immediate)
         : profiler(profiler), is_enabled(false), stop_immediate(stop_immediate), main_thread_id(-1)
         , memory_resource(stop_immediate ? new heap_allocating_resource : std::pmr::get_default_resource())
         , thread_infos(memory_resource)
         , weak_points(std::move(weak_points)), strong_points(std::move(strong_points))
+        , thread_preemption_bound(thread_preemption_bound), current_thread_preemptions(0)
     {
         profiler.set_function_entry_hook([this](const function_spec* function, const std::vector<argument_data>& args)
         {
@@ -270,21 +274,29 @@ public:
             thr_info->call_stack->push_back(function);
         }
 
-        if (strong_points.matches(*thr_info->call_stack))
+        if (current_thread_preemptions < thread_preemption_bound)
         {
-            spin_lock.lock();
-            for (auto& thr_info_opt : thread_infos)
+            if (strong_points.matches(*thr_info->call_stack))
             {
-                // using ranges/views here sometimes overruns the thread_infos and corrupts memory
-                if (thr_info_opt.has_value() && thr_info_opt->get_thread_id().native_id != GetCurrentThreadId())
-                    thr_info_opt->freeze(stop_immediate);
-            }
-            spin_lock.unlock();
+                ++current_thread_preemptions;
 
-            thr_info->freeze(stop_immediate);
+                spin_lock.lock();
+                for (auto& thr_info_opt : thread_infos)
+                {
+                    // using ranges/views here sometimes overruns the thread_infos and corrupts memory
+                    if (thr_info_opt.has_value() && thr_info_opt->get_thread_id().native_id != GetCurrentThreadId())
+                        thr_info_opt->freeze(stop_immediate);
+                }
+                spin_lock.unlock();
+
+                thr_info->freeze(stop_immediate);
+            }
+            else if (thr_info->is_marked_for_suspension() || weak_points.matches(*thr_info->call_stack))
+            {
+                ++current_thread_preemptions;
+                thr_info->freeze(stop_immediate);
+            }
         }
-        else if (thr_info->is_marked_for_suspension() || weak_points.matches(*thr_info->call_stack))
-            thr_info->freeze(stop_immediate);
     }
 
     void method_leave(const function_spec* function)

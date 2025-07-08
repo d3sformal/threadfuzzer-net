@@ -137,7 +137,7 @@ public:
     std::pmr::vector<thread_info*> threads_to_run(ThreadInfosRange&& thread_infos, const trace& trace)
     {
         std::pmr::vector<thread_info*> result(get_memory_resource());
-        result.push_back(single_thread_to_run(thread_infos, trace));
+        result.push_back(single_thread_to_run(std::forward<ThreadInfosRange>(thread_infos), trace));
         return result;
     }
 

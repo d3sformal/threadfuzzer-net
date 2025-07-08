@@ -25,6 +25,11 @@
 # debug_type += first           # first, last or random
 # debug_type += extra.log       # path to extra logging
 
+# Bounded thread preemptions (default = -1 = unbounded, 0 = no interaction)
+# thread_preemption_bound = -1
+# thread_preemption_bound = 0
+# thread_preemption_bound = 100
+
 # Thawing timeout
 # thawing_timeout = -1 # Disabled
 # thawing_timeout = 0 # thread_yield

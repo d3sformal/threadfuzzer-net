@@ -16,7 +16,7 @@
 #include <mutex>
 #include <atomic>
 
-class cor_profiler : public cor_profiler_base
+class cor_profiler final : public cor_profiler_base
 {
     logging_target log_target;
 public:
@@ -74,6 +74,8 @@ private:
     std::unordered_map<FunctionID, std::unique_ptr<function_spec>> functions;
     std::recursive_mutex fun_mutex;
     const function_spec& register_function(FunctionID function_id, COR_PRF_ELT_INFO elt_info);
+
+    std::vector<stop_point> stop_points;
 
     bool is_value_type(ClassID class_id) const
     {
@@ -162,8 +164,6 @@ public:
     {
         return is_entry_point(function->get_name(), function->get_defining_class()->get_name());
     }
-
-    std::vector<stop_point> stop_points;
 
     bool is_entry_point(const std::wstring& method_name, const std::wstring& class_name) const
     {

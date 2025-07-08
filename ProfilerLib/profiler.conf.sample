@@ -1,3 +1,7 @@
+# It is possible to include another file using the following syntax
+#   @include path
+# If path is relative it is resolved in the context of this file
+
 # Logging
 #   0 = Disabled
 #   1 = Error

@@ -64,10 +64,10 @@ public:
 
         try
         {
-            char* config_path = nullptr;
+            wchar_t* config_path = nullptr;
             std::size_t unused;
-            COR_SANITIZE(_dupenv_s(&config_path, &unused, "COR_PROFILER_CONFIG_FILE"));
-            std::unique_ptr<char, decltype(free)*> storage{ config_path, free };
+            COR_SANITIZE(_wdupenv_s(&config_path, &unused, L"COR_PROFILER_CONFIG_FILE"));
+            std::unique_ptr<wchar_t, decltype(free)*> storage{ config_path, free };
             if (config_path != nullptr)
                 config_file::load_file(config_path);
             else

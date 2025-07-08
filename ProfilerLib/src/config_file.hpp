@@ -13,7 +13,7 @@ class config_file
     static config_file instance;
 
 public:
-    static config_file& load_file(const std::string& str);
+    static config_file& load_file(const std::wstring& str);
 
     static const config_file& get_instance()
     {

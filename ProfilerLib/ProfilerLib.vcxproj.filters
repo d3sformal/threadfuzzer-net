@@ -139,6 +139,9 @@
     <ClInclude Include="src\thread_interleaving_control\trace.hpp">
       <Filter>Thread Interleaving Control</Filter>
     </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\thread_preemption_bound.hpp">
+      <Filter>Thread Interleaving Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.def" />

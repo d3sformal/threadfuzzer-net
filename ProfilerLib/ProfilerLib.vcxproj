@@ -184,6 +184,7 @@
     <ClInclude Include="src\thread_interleaving_control\console_driver.hpp" />
     <ClInclude Include="src\thread_interleaving_control\driver_base.hpp" />
     <ClInclude Include="src\thread_interleaving_control\fuzzing_driver.hpp" />
+    <ClInclude Include="src\thread_interleaving_control\thread_preemption_bound.hpp" />
     <ClInclude Include="src\thread_interleaving_control\pursuing_driver.hpp" />
     <ClInclude Include="src\thread_interleaving_control\stop_points.hpp" />
     <ClInclude Include="src\thread_interleaving_control\systematic_driver.hpp" />

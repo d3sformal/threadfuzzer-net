@@ -34,6 +34,10 @@
 # thread_preemption_bound = 0
 # thread_preemption_bound = 100
 
+# What to do after bound is reached
+# thread_preemption_bound_strategy = continue # (default, continues running without triggering stop points)
+# thread_preemption_bound_strategy = exit # Exits the subject application
+
 # Thawing timeout
 # thawing_timeout = -1 # Disabled
 # thawing_timeout = 0 # thread_yield

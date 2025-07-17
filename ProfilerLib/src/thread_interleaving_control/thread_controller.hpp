@@ -4,6 +4,7 @@
 #include "stop_points.hpp"
 #include "trace.hpp"
 #include "atomic_value_exchanger.hpp"
+#include "thread_preemption_bound.hpp"
 
 #include "../net_types.hpp"
 #include "../argument_data.hpp"
@@ -50,8 +51,7 @@ class thread_controller
     stop_points weak_points;
     stop_points strong_points;
 
-    std::size_t thread_preemption_bound;
-    std::atomic<std::size_t> current_thread_preemptions;
+    thread_preemption_bound thread_preemption_bound;
 
     atomic_value_exchanger<thread_info> thread_info_to_add;
     atomic_value_exchanger<std::reference_wrapper<thread_info>> thread_info_to_remove;
@@ -226,12 +226,12 @@ class thread_controller
     }
 
 public:
-    thread_controller(const cor_profiler& profiler, stop_points&& weak_points, stop_points&& strong_points, std::size_t thread_preemption_bound, bool stop_immediate)
+    thread_controller(const cor_profiler& profiler, stop_points&& weak_points, stop_points&& strong_points, ::thread_preemption_bound&& thread_preemption_bound, bool stop_immediate)
         : profiler(profiler), is_enabled(false), stop_immediate(stop_immediate), main_thread_id(-1)
         , memory_resource(stop_immediate ? new heap_allocating_resource : std::pmr::get_default_resource())
         , thread_infos(memory_resource)
         , weak_points(std::move(weak_points)), strong_points(std::move(strong_points))
-        , thread_preemption_bound(thread_preemption_bound), current_thread_preemptions(0)
+        , thread_preemption_bound(std::move(thread_preemption_bound))
     {
         profiler.set_function_entry_hook([this](const function_spec* function, const std::vector<argument_data>& args)
         {
@@ -274,11 +274,11 @@ public:
             thr_info->call_stack->push_back(function);
         }
 
-        if (current_thread_preemptions < thread_preemption_bound)
+        if (thread_preemption_bound.current < thread_preemption_bound.max)
         {
             if (strong_points.matches(*thr_info->call_stack))
             {
-                ++current_thread_preemptions;
+                ++thread_preemption_bound.current;
 
                 spin_lock.lock();
                 for (auto& thr_info_opt : thread_infos)
@@ -293,9 +293,13 @@ public:
             }
             else if (thr_info->is_marked_for_suspension() || weak_points.matches(*thr_info->call_stack))
             {
-                ++current_thread_preemptions;
+                ++thread_preemption_bound.current;
                 thr_info->freeze(stop_immediate);
             }
+        }
+        else if (thread_preemption_bound.strategy == thread_preemption_bound_strategy::EXIT)
+        {
+            ExitProcess(0);
         }
     }
 

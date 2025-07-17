@@ -93,21 +93,26 @@ public:
 
             profiler = new cor_profiler();
 
+            auto create_thread_controller = [&]<typename Driver>
+            {
+                return new thread_controller<Driver>(*profiler, std::move(weak_points), std::move(strong_points), std::move(tpb), stop_immediate);
+            };
+
             if (debug_type == L"console")
-                thr_debugger = new thread_controller<console_driver>(*profiler, std::move(weak_points), std::move(strong_points), std::move(tpb), stop_immediate);
+                thr_debugger = create_thread_controller.operator()<console_driver>();
             else if (debug_type == L"fuzzing")
-                thr_debugger = new thread_controller<fuzzing_driver>(*profiler, std::move(weak_points), std::move(strong_points), std::move(tpb), stop_immediate);
+                thr_debugger = create_thread_controller.operator()<fuzzing_driver>();
             else if (debug_type == L"systematic")
             {
                 if (config.get_value(L"data_file").empty())
                     throw profiler_error(L"Debug type 'systematic' requires 'data_file'.");
-                thr_debugger = new thread_controller<systematic_driver>(*profiler, std::move(weak_points), std::move(strong_points), std::move(tpb), stop_immediate);
+                thr_debugger = create_thread_controller.operator()<systematic_driver>();
             }
             else if (debug_type == L"pursuing")
             {
                 if (config.get_value(L"data_file").empty())
                     throw profiler_error(L"Debug type 'pursuing' requires 'data_file'.");
-                thr_debugger = new thread_controller<pursuing_driver>(*profiler, std::move(weak_points), std::move(strong_points), std::move(tpb), stop_immediate);
+                thr_debugger = create_thread_controller.operator()<pursuing_driver>();
             }
             else
                 throw profiler_error(L"Invalid 'debug_type'");

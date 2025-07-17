@@ -22,6 +22,9 @@ Note that this will take hours to run.
 
 On top of that, `traces` directory contains traces for each benchmark (multiple iterations are collected in a single file). These can be further inspected via provided tools (`TraceFileInspector` and `TraceFileStats`).
 
+## Creating new configuration
+It's usually good idea to start from some existing one (i.e. make a copy of `config_fuzzing`) and change `_base.conf` file, which is included with all other files.
+
 # Running multiple configurations in batch
 We clear the old traces and results
 
@@ -31,3 +34,5 @@ We clear the old traces and results
 And run everything
 
     run_batch_profiled.bat 150 all systematic_first systematic_last systematic_random
+
+Note that the tex table layout is outdated and the conversion script for transposing the table (.py) is obsolete

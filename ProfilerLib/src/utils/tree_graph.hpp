@@ -121,7 +121,7 @@ public:
             return edges[index];
         }
 
-        [[nodiscard]] const graph_vertex& next_vertex(std::size_t index) const
+        [[nodiscard]] graph_vertex& next_vertex(std::size_t index) const
         {
             return *children[index];
         }

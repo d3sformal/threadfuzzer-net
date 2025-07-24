@@ -15,6 +15,7 @@
 #include <chrono>
 #include <iostream>
 
+template<typename TreePruner>
 class systematic_driver : public driver_base
 {
     enum class search_type_t : std::uint8_t
@@ -124,6 +125,8 @@ public:
         }
 
         trace_file.populate_call_graph(call_graph, mem_resource);
+
+        TreePruner::prune_tree(call_graph, extra_log);
 
         if (call_graph.root().edges_size() == 0)
         {

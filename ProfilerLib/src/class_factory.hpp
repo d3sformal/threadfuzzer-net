@@ -10,6 +10,7 @@
 #include "thread_interleaving_control/stop_points.hpp"
 
 #include "thread_interleaving_control/all_drivers.hpp"
+#include "thread_interleaving_control/all_pruners.hpp"
 #include "thread_interleaving_control/thread_preemption_bound.hpp"
 
 #include <atomic>
@@ -103,7 +104,7 @@ public:
             {
                 if (config.get_value(L"data_file").empty())
                     throw profiler_error(L"Debug type 'systematic' requires 'data_file'.");
-                thr_debugger = create_thread_controller.operator()<systematic_driver>();
+                thr_debugger = create_thread_controller.operator()<systematic_driver<tree_pruners::selected_pruner>>();
             }
             else if (debug_type == L"pursuing")
             {

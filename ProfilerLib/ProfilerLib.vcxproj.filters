@@ -21,6 +21,9 @@
     <Filter Include="Thread Interleaving Control\Drivers">
       <UniqueIdentifier>{758db81f-e032-4894-a83e-f5b94f67813d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Thread Interleaving Control\TreePruners">
+      <UniqueIdentifier>{011ed2ed-afa0-47a6-b714-cb645fd6ff68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -142,8 +145,14 @@
     <ClInclude Include="src\thread_interleaving_control\thread_preemption_bound.hpp">
       <Filter>Thread Interleaving Control</Filter>
     </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\identity_pruner.hpp">
+      <Filter>Thread Interleaving Control\TreePruners</Filter>
+    </ClInclude>
     <ClInclude Include="src\thread_interleaving_control\all_drivers.hpp">
       <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\all_pruners.hpp">
+      <Filter>Thread Interleaving Control\TreePruners</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

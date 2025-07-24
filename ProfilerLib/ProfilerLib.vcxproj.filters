@@ -142,6 +142,9 @@
     <ClInclude Include="src\thread_interleaving_control\thread_preemption_bound.hpp">
       <Filter>Thread Interleaving Control</Filter>
     </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\all_drivers.hpp">
+      <Filter>Thread Interleaving Control\Drivers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.def" />

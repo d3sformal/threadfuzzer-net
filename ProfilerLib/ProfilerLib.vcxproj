@@ -180,6 +180,7 @@
     <ClInclude Include="src\net_types.hpp" />
     <ClInclude Include="src\stack_info.hpp" />
     <ClInclude Include="src\thread_id.hpp" />
+    <ClInclude Include="src\thread_interleaving_control\all_drivers.hpp" />
     <ClInclude Include="src\thread_interleaving_control\atomic_value_exchanger.hpp" />
     <ClInclude Include="src\thread_interleaving_control\console_driver.hpp" />
     <ClInclude Include="src\thread_interleaving_control\driver_base.hpp" />

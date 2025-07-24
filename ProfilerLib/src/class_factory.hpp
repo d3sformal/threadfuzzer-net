@@ -9,10 +9,7 @@
 #include "thread_interleaving_control/thread_controller.hpp"
 #include "thread_interleaving_control/stop_points.hpp"
 
-#include "thread_interleaving_control/fuzzing_driver.hpp"
-#include "thread_interleaving_control/console_driver.hpp"
-#include "thread_interleaving_control/systematic_driver.hpp"
-#include "thread_interleaving_control/pursuing_driver.hpp"
+#include "thread_interleaving_control/all_drivers.hpp"
 #include "thread_interleaving_control/thread_preemption_bound.hpp"
 
 #include <atomic>

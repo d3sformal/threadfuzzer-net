@@ -13,10 +13,11 @@
 #include <algorithm>
 #include <utility>
 #include <chrono>
+#include <iostream>
 
 class systematic_driver : public driver_base
 {
-    enum class search_type_t
+    enum class search_type_t : std::uint8_t
     {
         FIRST,
         LAST,
@@ -119,7 +120,7 @@ public:
         if (params.size() > 2)
         {
             extra_log = std::wofstream(params[2], std::ios::app);
-            extra_log << L"[ NEW ITERATION (" << params[1] << L") ]" << std::endl;
+            extra_log << L"[ NEW ITERATION (search_type=" << params[1] << L") ]" << std::endl;
         }
 
         trace_file.populate_call_graph(call_graph, mem_resource);

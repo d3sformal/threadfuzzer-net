@@ -219,10 +219,17 @@ class thread_controller
 
     std::thread create_debugger_loop_thread()
     {
-        std::thread thread(&thread_controller::thread_controller_loop, this, Driver{ profiler, memory_resource });
-        SetThreadDescription(thread.native_handle(), L"DebuggerLoopThread");
-
-        return thread;
+        try
+        {
+            std::thread thread(&thread_controller::thread_controller_loop, this, Driver{ profiler, memory_resource });
+            SetThreadDescription(thread.native_handle(), L"DebuggerLoopThread");
+            return thread;
+        }
+        catch (profiler_error& error)
+        {
+            profiler.log<logging_level::ERROR>(error.wwhat());
+            ExitProcess(0);
+        }
     }
 
 public:

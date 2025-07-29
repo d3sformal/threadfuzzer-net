@@ -1,8 +1,8 @@
 #pragma once
 
-#include "trace.hpp"
+#include "../trace.hpp"
 
-#include "../utils/tree_graph.hpp"
+#include "../../utils/tree_graph.hpp"
 
 #include <iostream>
 

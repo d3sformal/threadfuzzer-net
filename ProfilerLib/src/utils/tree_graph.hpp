@@ -26,6 +26,13 @@ namespace detail
     }
 }
 
+/// <summary>
+/// Describes an any-ary tree. <seealso cref="tree_graph::graph_vertex"/>
+/// </summary>
+/// <typeparam name="V">Vertex type</typeparam>
+/// <typeparam name="E">Edge type</typeparam>
+/// <typeparam name="EdgeEqual">std::equal_to-like for Edge</typeparam>
+/// <typeparam name="AllocE">Allocator type</typeparam>
 template<typename V, typename E, typename EdgeEqual = std::equal_to<>, typename AllocE = std::allocator<E>>
 class tree_graph
 {
@@ -54,6 +61,9 @@ public:
     {
     }
 
+    /// <summary>
+    /// Vertex of a graph.
+    /// </summary>
     class graph_vertex
     {
         template<typename T, typename Alloc, typename... Ts>
@@ -69,6 +79,9 @@ public:
         graph_vertex* father; // ToDo: copying/moving father vertex will break this ptr
 
     public:
+        /// <summary>
+        /// The value of the vertex.
+        /// </summary>
         V value;
 
     private:
@@ -106,27 +119,42 @@ public:
             return *children.back();
         }
 
+        /// <summary>
+        /// Returns the father of this vertex.
+        /// </summary>
         [[nodiscard]] graph_vertex* previous_vertex() const
         {
             return father;
         }
 
+        /// <summary>
+        /// Returns number of children of this vertex.
+        /// </summary>
         [[nodiscard]] std::size_t edges_size() const
         {
             return edges.size();
         }
 
+        /// <summary>
+        /// Returns n-th edge of this vertex, <see cref="edges_size"/>
+        /// </summary>
         [[nodiscard]] const E& get_edge(std::size_t index) const
         {
             return edges[index];
         }
 
+        /// <summary>
+        /// Returns n-th child of this vertex, <see cref="edges_size"/>
+        /// </summary>
         [[nodiscard]] graph_vertex& next_vertex(std::size_t index) const
         {
             return *children[index];
         }
     };
 
+    /// <summary>
+    /// Returns the root vertex.
+    /// </summary>
     graph_vertex& root()
     {
         return dummy_root;

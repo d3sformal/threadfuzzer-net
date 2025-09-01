@@ -14,8 +14,8 @@ for %%x in (%rest%) do (
     mklink /D config config_%%x
 
     run_profiled_benchmark.bat %iterations% %benchmark_name% > results_%%x.txt
-    mv traces traces_%%x
-    rm config
+    ren traces traces_%%x
+    rmdir config
 )
 
 EXIT /B 0

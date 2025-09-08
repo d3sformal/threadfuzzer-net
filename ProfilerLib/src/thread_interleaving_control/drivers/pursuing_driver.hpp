@@ -1,11 +1,11 @@
 #pragma once
 
-#include "thread_info.hpp"
-#include "trace.hpp"
 #include "driver_base.hpp"
+#include "../thread_info.hpp"
+#include "../trace.hpp"
+#include "../thread_preemption_bound.hpp"
 
-#include "../thread_safe_logger.hpp"
-#include "../config_file.hpp"
+#include "../../config_file.hpp"
 
 #include <vector>
 #include <thread>
@@ -18,8 +18,8 @@ class pursuing_driver : public driver_base
     std::size_t cur_index;
 
 public:
-    pursuing_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource)
-        : driver_base(profiler, mem_resource)
+    pursuing_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, const ::thread_preemption_bound& tpb)
+        : driver_base(profiler, mem_resource, tpb)
         , cur_index(0)
     {
         auto path = config_file::get_instance().get_value(L"data_file");

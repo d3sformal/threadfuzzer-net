@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../cor_profiler.hpp"
+#include "../thread_preemption_bound.hpp"
 #include <memory_resource>
 
 class driver_base
@@ -8,9 +9,12 @@ class driver_base
     const cor_profiler& profiler;
     std::pmr::memory_resource* mem_resource;
 
+protected:
+    const thread_preemption_bound& thread_preemption_bound;
+
 public:
-    driver_base(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource)
-        : profiler(profiler), mem_resource(mem_resource)
+    driver_base(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, const ::thread_preemption_bound& thread_preemption_bound)
+        : profiler(profiler), mem_resource(mem_resource), thread_preemption_bound(thread_preemption_bound)
     {
     }
 

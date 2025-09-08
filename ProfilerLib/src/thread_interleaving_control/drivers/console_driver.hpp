@@ -1,11 +1,13 @@
 #pragma once
 
-#include "thread_info.hpp"
-#include "trace.hpp"
 #include "driver_base.hpp"
 
-#include "../utils/console.hpp"
-#include "../utils/wstring_split.hpp"
+#include "../thread_info.hpp"
+#include "../trace.hpp"
+#include "../thread_preemption_bound.hpp"
+
+#include "../../utils/console.hpp"
+#include "../../utils/wstring_split.hpp"
 
 #include <vector>
 #include <thread>
@@ -17,8 +19,8 @@ class console_driver : public driver_base
     console console; // Hopefully the allocation happens before some threads could get to strong point (otherwise make this into allocator aware type)
 
 public:
-    console_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource)
-        : driver_base(profiler, mem_resource)
+    console_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, const ::thread_preemption_bound& tpb)
+        : driver_base(profiler, mem_resource, tpb)
     {
     }
 

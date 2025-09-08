@@ -1,12 +1,13 @@
 #pragma once
 
-#include "thread_info.hpp"
-#include "trace.hpp"
 #include "driver_base.hpp"
+#include "../thread_info.hpp"
+#include "../trace.hpp"
+#include "../thread_preemption_bound.hpp"
 
-#include "../config_file.hpp"
-#include "../thread_safe_logger.hpp"
-#include "../utils/tree_graph.hpp"
+#include "../../config_file.hpp"
+#include "../../thread_safe_logger.hpp"
+#include "../../utils/tree_graph.hpp"
 
 #include <vector>
 #include <random>
@@ -91,7 +92,7 @@ public:
     systematic_driver(const systematic_driver&) = delete;
 
     systematic_driver(systematic_driver&& other) noexcept
-        : driver_base(other.get_profiler(), other.get_memory_resource())
+        : driver_base(other.get_profiler(), other.get_memory_resource(), other.thread_preemption_bound)
         , trace_file(std::move(other.trace_file))
         , call_graph(std::move(other.call_graph))
         , current_vertex(&call_graph.root())
@@ -105,8 +106,8 @@ public:
     systematic_driver& operator=(systematic_driver&& other) = delete;
     ~systematic_driver() override = default;
 
-    systematic_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, std::size_t seed = std::random_device{}())
-        : driver_base(profiler, mem_resource)
+    systematic_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, const ::thread_preemption_bound& tpb, std::size_t seed = std::random_device{}())
+        : driver_base(profiler, mem_resource, tpb)
         , trace_file(config_file::get_instance().get_value(L"data_file"))
         , call_graph(mem_resource), current_vertex(&call_graph.root())
         , seed(seed), rng_engine(seed)

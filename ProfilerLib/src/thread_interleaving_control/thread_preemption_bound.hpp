@@ -1,6 +1,8 @@
 #pragma once
 #include <numeric>
 
+#undef max
+
 enum class thread_preemption_bound_strategy : std::uint8_t
 {
     CONTINUE,

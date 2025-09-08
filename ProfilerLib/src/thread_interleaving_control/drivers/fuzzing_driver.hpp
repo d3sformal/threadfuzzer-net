@@ -1,13 +1,13 @@
 #pragma once
 
-#include "thread_info.hpp"
 #include "driver_base.hpp"
-#include "trace.hpp"
+
+#include "../thread_info.hpp"
+#include "../trace.hpp"
+#include "../thread_preemption_bound.hpp"
 
 #include <vector>
-#include <thread>
 #include <random>
-#include <chrono>
 #include <algorithm>
 
 class fuzzing_driver : public driver_base
@@ -16,8 +16,9 @@ class fuzzing_driver : public driver_base
     std::mt19937 rng_engine;
 
 public:
-    fuzzing_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, std::size_t seed = std::random_device{}())
-        : driver_base(profiler, mem_resource), seed(seed), rng_engine(seed)
+    fuzzing_driver(const cor_profiler& profiler, std::pmr::memory_resource* mem_resource, const ::thread_preemption_bound& tpb, std::size_t seed = std::random_device{}())
+        : driver_base(profiler, mem_resource, tpb)
+        , seed(seed), rng_engine(seed)
     {
     }
 

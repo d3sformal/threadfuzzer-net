@@ -58,6 +58,8 @@ class thread_controller
 
     spin_lock spin_lock;
 
+    std::optional<Driver> driver;
+
     thread_info* get_thread_info()
     {
         auto counted_id = profiler.get_thread_id(GetCurrentThreadId()).counted_id;
@@ -122,7 +124,7 @@ class thread_controller
         return nop;
     }
 
-    void thread_controller_loop(Driver&& driver)
+    void thread_controller_loop(Driver* driver)
     try
     {
         const std::wstring& text_trace_file = config_file::get_instance().get_value(L"trace_file");
@@ -139,7 +141,7 @@ class thread_controller
         }
 
         bool trace_enabled = output;
-        bool data_file_enabled = !config_file::get_instance().get_value(L"data_file").empty() && driver.should_update_data_file();
+        bool data_file_enabled = !config_file::get_instance().get_value(L"data_file").empty() && driver->should_update_data_file();
 
         std::chrono::microseconds thawing_timeout(config_file::get_instance().get_value<int>(L"thawing_timeout"));
         auto sleep_func = init_sleep_function(thawing_timeout);
@@ -172,7 +174,7 @@ class thread_controller
             if (!std::ranges::empty(thread_infos | views::as_thread_info_ptrs | views::only_frozen))
             {
                 sleep_func();
-                auto threads = driver.threads_to_run(thread_infos | views::as_thread_info_ptrs, trace);
+                auto threads = driver->threads_to_run(thread_infos | views::as_thread_info_ptrs, trace);
                 if (threads.empty() || std::ranges::all_of(threads, [](const thread_info* thr_info) { return thr_info == nullptr; }))
                     continue;
 
@@ -221,7 +223,8 @@ class thread_controller
     {
         try
         {
-            std::thread thread(&thread_controller::thread_controller_loop, this, Driver{ profiler, memory_resource });
+            driver.emplace(profiler, memory_resource, thread_preemption_bound);
+            std::thread thread(&thread_controller::thread_controller_loop, this, &*driver);
             SetThreadDescription(thread.native_handle(), L"DebuggerLoopThread");
             return thread;
         }
@@ -305,9 +308,7 @@ public:
             }
         }
         else if (thread_preemption_bound.strategy == thread_preemption_bound_strategy::EXIT)
-        {
             ExitProcess(0);
-        }
     }
 
     void method_leave(const function_spec* function)

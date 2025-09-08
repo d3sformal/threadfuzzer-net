@@ -16,6 +16,8 @@
 #include <chrono>
 #include <iostream>
 
+#include <windows.h>
+
 template<typename TreePruner>
 class systematic_driver : public driver_base
 {
@@ -135,7 +137,14 @@ public:
             current_vertex = nullptr;
         }
         else if (call_graph.root().value == 0)
-            throw profiler_error(L"Exhausted options for systematic_driver");
+        {
+            log(L">> Exhausted options for systematic driver <<");
+            if (auto event_handle = OpenEvent(EVENT_ALL_ACCESS, false, L"SystematicDriverExhaustedEvent"))
+            {
+                log(L">>>> Signalling though event handle");
+                SetEvent(event_handle);
+            }
+        }
     }
 
     template<std::ranges::range ThreadInfosRange>

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommandLineParser.Arguments;
+using CommandLineParser.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using CommandLineParser.Arguments;
-using CommandLineParser.Exceptions;
+using System.Threading;
 using OptionsParser = CommandLineParser.CommandLineParser;
 
 namespace SCTBenchmarksRunner;
@@ -103,15 +104,22 @@ internal class Program
     {
         var stats = new BenchmarkRunStats();
 
+        var eventHandle = new EventWaitHandle(false, EventResetMode.AutoReset, "SystematicDriverExhaustedEvent");
+
         Console.Write($"Benchmark {benchmark.Name}: ");
         for (int i = 1; i <= options.Iterations; ++i)
         {
-            stats.Iterations++;
 
             using var process = new Process();
             var sw = Stopwatch.StartNew();
             var timedOut = !RunBenchmark(process, options, benchmark.Name);
             sw.Stop();
+
+            if (eventHandle.WaitOne(0)) // exhausted options
+                break;
+
+            Console.Write(".");
+            stats.Iterations++;
 
             if (timedOut)
             {
@@ -130,11 +138,10 @@ internal class Program
                 }
                 stats.TimeTaken += sw.ElapsedMilliseconds;
             }
-            Console.Write(".");
         }
 
         Console.WriteLine();
-        Console.WriteLine($"  Iterations = {stats.Iterations}");
+        Console.WriteLine($"  Iterations = {stats.Iterations}{(stats.Iterations != options.Iterations ? " (Exhausted options, stopped prematurely)" : "")}");
         Console.WriteLine($"      Passed = {stats.Passed} ({100.0 * stats.Passed / stats.Iterations:F1}%)");
         Console.WriteLine($"    Violated = {stats.AssertionViolated} ({100.0 * stats.AssertionViolated / stats.Iterations:F1}%)");
         if (stats.TimedOut > 0)

@@ -12,7 +12,7 @@ SET profiler_dll=../../Release/ProfilerLib.dll
 
 del /S /Q traces
 
-SCTBenchmarksRunner\bin\Debug\net48\SCTBenchmarksRunner.exe -s SCTBenchmarks\bin\Debug\Benchmarks.exe -p %profiler_dll% -i %iterations% %rest% %benchmark_name%
+SCTBenchmarksRunner\bin\Release\net48\SCTBenchmarksRunner.exe -s SCTBenchmarks\bin\Release\Benchmarks.exe -p %profiler_dll% -i %iterations% %rest% %benchmark_name%
 
 EXIT /B 0
 

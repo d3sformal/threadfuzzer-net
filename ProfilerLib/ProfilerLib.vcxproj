@@ -189,6 +189,7 @@
     <ClInclude Include="src\thread_interleaving_control\drivers\systematic_driver.hpp" />
     <ClInclude Include="src\thread_interleaving_control\pruners\identity_pruner.hpp" />
     <ClInclude Include="src\thread_interleaving_control\pruners\pruners_config.hpp" />
+    <ClInclude Include="src\thread_interleaving_control\pruners\randomthset_pruner.hpp" />
     <ClInclude Include="src\thread_interleaving_control\thread_preemption_bound.hpp" />
     <ClInclude Include="src\thread_interleaving_control\stop_points.hpp" />
     <ClInclude Include="src\thread_interleaving_control\thread_controller.hpp" />

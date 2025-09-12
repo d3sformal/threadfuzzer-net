@@ -154,6 +154,9 @@
     <ClInclude Include="src\thread_interleaving_control\pruners\pruners_config.hpp">
       <Filter>Thread Interleaving Control\TreePruners</Filter>
     </ClInclude>
+    <ClInclude Include="src\thread_interleaving_control\pruners\randomthset_pruner.hpp">
+      <Filter>Thread Interleaving Control\TreePruners</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.def" />

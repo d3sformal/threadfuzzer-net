@@ -35,4 +35,3 @@ And run everything
 
     run_batch_profiled.bat 150 all systematic_first systematic_last systematic_random
 
-Note that the tex table layout is outdated and the conversion script for transposing the table (.py) is obsolete
